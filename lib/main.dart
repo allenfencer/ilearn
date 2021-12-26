@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ilearn/screens/login_screen.dart';
+import 'package:ilearn/screens/splash_screen.dart';
 
 void main() {
   runApp(
     MaterialApp(
-      home: LoginScreen(),
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
     ),
   );
 }

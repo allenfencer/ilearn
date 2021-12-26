@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ilearn/colors.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({ Key? key }) : super(key: key);
@@ -6,6 +7,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.bgColor,
     );
   }
 }
