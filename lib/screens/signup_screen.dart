@@ -4,13 +4,13 @@ import 'package:ilearn/global_widgets/custom_button.dart';
 import 'package:ilearn/global_widgets/logo_buttons.dart';
 import 'package:ilearn/global_widgets/name_textfield.dart';
 import 'package:ilearn/global_widgets/password_textfield.dart';
-import 'package:ilearn/screens/signup_screen.dart';
+import 'package:ilearn/screens/login_screen.dart';
 import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/strings.dart';
 import 'package:ilearn/styling/text_styles.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignUp extends StatelessWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class LoginScreen extends StatelessWidget {
                 height: 50,
               ),
               Text(
-                loginMsg,
+                registerMsg,
                 style: headingStyle,
                 textAlign: TextAlign.center,
               ),
@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
                 height: 50,
               ),
               Text(
-                signIn,
+                signUp,
                 style: smallTextStyle,
               ),
               SizedBox(
@@ -63,23 +63,28 @@ class LoginScreen extends StatelessWidget {
                 hintText: 'Username',
                 imagePath: 'profile.png',
               ),
+              NameTextField(
+                hintText: 'Email',
+                imagePath: 'sms.png',
+                inputType: TextInputType.emailAddress,
+              ),
               PasswordTextField(),
               SizedBox(
                 height: 50,
               ),
               CustomButton(
-                btnText: 'Login',
+                btnText: 'Register',
               ),
               SizedBox(
                 height: 45,
               ),
               RichText(
                   text: TextSpan(
-                      text: 'Don\'t have an account yet? ',
+                      text: 'Already have an account? ',
                       style: smallTextStyle,
                       children: [
                     TextSpan(
-                        text: 'Register',
+                        text: 'Login',
                         style: TextStyle(
                           fontSize: 14,
                           color: AppColor.primaryColor,
@@ -88,10 +93,10 @@ class LoginScreen extends StatelessWidget {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.pushReplacement(
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SignUp()));
+                                    builder: (context) => LoginScreen()));
                           })
                   ]))
             ],

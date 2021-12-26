@@ -18,7 +18,7 @@ class LogoButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: EdgeInsets.all(10),
       alignment: Alignment.center,
       height: 60,
       width: 130,
@@ -27,12 +27,14 @@ class LogoButton extends StatelessWidget {
         color: btnColor,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(
             'assets/svgs/$btnImagePath',
             height: 25,
             width: 25,
+            alignment: Alignment.topCenter,
           ),
           Text(
             btnText,

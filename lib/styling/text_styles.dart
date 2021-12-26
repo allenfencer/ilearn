@@ -14,3 +14,10 @@ const TextStyle smallTextStyle = TextStyle(
   fontWeight: FontWeight.w400,
   wordSpacing: 1,
 );
+
+const TextStyle btnTextStyle = TextStyle(
+  fontSize: 18,
+  color: AppColor.black,
+  fontWeight: FontWeight.w600,
+  wordSpacing: 1,
+);
