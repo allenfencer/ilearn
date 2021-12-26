@@ -1,6 +1,6 @@
 # ilearn
 
-A new Flutter project.
+A new Flutter project created for Imagine Cup 2022.
 
 ## Getting Started
 
