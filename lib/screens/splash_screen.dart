@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ilearn/colors.dart';
+import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/screens/login_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
