@@ -10,11 +10,13 @@ class PasswordTextField extends StatefulWidget {
 }
 
 class _PasswordTextFieldState extends State<PasswordTextField> {
-  bool isVisible = false;
+  final passwordController = TextEditingController();
+
+  bool isObscure = true;
 
   void showPassword() {
     setState(() {
-      isVisible = !isVisible;
+      isObscure = !isObscure;
     });
   }
 
@@ -27,7 +29,8 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       child: TextField(
         keyboardType: TextInputType.text,
         style: smallTextStyle,
-        obscureText: isVisible ? true : false,
+        controller: passwordController,
+        obscureText: isObscure,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 18),
           fillColor: AppColor.white,

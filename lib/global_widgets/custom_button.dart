@@ -4,7 +4,7 @@ import 'package:ilearn/styling/text_styles.dart';
 
 class CustomButton extends StatelessWidget {
   final String btnText;
-  const CustomButton({Key? key,required this.btnText}) : super(key: key);
+  const CustomButton({Key? key, required this.btnText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,6 @@ class CustomButton extends StatelessWidget {
         style: btnTextStyle,
       ),
       color: AppColor.secondaryColor,
-      textColor: AppColor.black,
     );
   }
 }
