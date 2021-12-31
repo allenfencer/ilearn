@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ilearn/styling/colors.dart';
-import 'package:ilearn/screens/login_screen.dart';
+import 'package:ilearn/screens/authentication/login_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SplashScreen extends StatefulWidget {
