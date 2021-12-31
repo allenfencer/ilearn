@@ -6,9 +6,11 @@ class LogoButton extends StatelessWidget {
   final Color? btnTextColor;
   final String btnText;
   final String? btnImagePath;
+  final VoidCallback? callback;
 
   const LogoButton(
       {Key? key,
+      this.callback,
       this.btnColor,
       this.btnTextColor,
       required this.btnText,

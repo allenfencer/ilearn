@@ -4,6 +4,7 @@ import 'package:ilearn/global_widgets/custom_button.dart';
 import 'package:ilearn/global_widgets/logo_buttons.dart';
 import 'package:ilearn/global_widgets/name_textfield.dart';
 import 'package:ilearn/global_widgets/password_textfield.dart';
+import 'package:ilearn/screens/homepage.dart';
 import 'package:ilearn/screens/signup_screen.dart';
 import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/strings.dart';
@@ -69,6 +70,8 @@ class LoginScreen extends StatelessWidget {
               ),
               CustomButton(
                 btnText: 'Login',
+                callback: () => Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => HomePage())),
               ),
               SizedBox(
                 height: 45,
