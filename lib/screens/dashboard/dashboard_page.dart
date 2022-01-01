@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ilearn/dashboard_components/button_row_one.dart';
 import 'package:ilearn/dashboard_components/button_row_two.dart';
 import 'package:ilearn/dashboard_components/learn_credit_container.dart';
-import 'package:ilearn/global_widgets/course_buttons.dart';
 import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/text_styles.dart';
 
