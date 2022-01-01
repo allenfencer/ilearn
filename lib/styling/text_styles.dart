@@ -21,3 +21,9 @@ const TextStyle btnTextStyle = TextStyle(
   fontWeight: FontWeight.w600,
   wordSpacing: 1,
 );
+
+const TextStyle mediumTextStyle =
+    TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: AppColor.white);
+
+const TextStyle courseButtonTextStyle =
+    TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: Colors.black45);
