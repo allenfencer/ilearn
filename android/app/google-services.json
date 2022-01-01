@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "815328333495",
+    "project_id": "ilearn-d6477",
+    "storage_bucket": "ilearn-d6477.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815328333495:android:5f65acdb6942de929b4732",
+        "android_client_info": {
+          "package_name": "com.reverse.ilearn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815328333495-oica3qfk461tf8k847bc8b6390ecu293.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKXOKMi7Vv2aQWhOJYf9WUtM-85Hf6OWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "815328333495-oica3qfk461tf8k847bc8b6390ecu293.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
