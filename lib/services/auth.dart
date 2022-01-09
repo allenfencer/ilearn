@@ -3,9 +3,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ilearn/models/user.dart';
 import 'package:ilearn/services/database.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
   UserModel _userFromFireBase(User user) {
     return UserModel(uid: user.uid);
@@ -15,6 +17,29 @@ class AuthServices {
     return _auth
         .authStateChanges()
         .map((User? user) => _userFromFireBase(user!));
+  }
+
+  Future signInUsingGoogle() async {
+    try {
+      GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+      GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount!.authentication;
+      final AuthCredential authCredential = GoogleAuthProvider.credential(
+          idToken: googleSignInAuthentication.idToken,
+          accessToken: googleSignInAuthentication.accessToken);
+
+      UserCredential result = await _auth.signInWithCredential(authCredential);
+      User? user = result.user;
+      StudentDatabaseService(uid: user!.uid).checkUserData(
+        username: user.displayName!,
+        mail: user.email!,
+      );
+
+      return _userFromFireBase(user);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
   }
 
   Future signUpUsingEmail(email, password,

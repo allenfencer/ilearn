@@ -5,8 +5,14 @@ import 'package:ilearn/styling/text_styles.dart';
 class NameTextField extends StatelessWidget {
   final String hintText;
   final String imagePath;
+  final TextEditingController controller;
   final TextInputType? inputType;
-  const NameTextField({Key? key, required this.hintText, this.inputType,required this.imagePath})
+  const NameTextField(
+      {Key? key,
+      required this.hintText,
+      this.inputType,
+      required this.imagePath,
+      required this.controller})
       : super(key: key);
 
   @override
@@ -15,7 +21,8 @@ class NameTextField extends StatelessWidget {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.symmetric(horizontal: 33, vertical: 10),
-      child: TextField(
+      child: TextFormField(
+        controller: controller,
         keyboardType: inputType ?? TextInputType.name,
         style: smallTextStyle,
         decoration: InputDecoration(

@@ -1,17 +1,33 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ilearn/global_widgets/custom_button.dart';
 import 'package:ilearn/global_widgets/logo_buttons.dart';
 import 'package:ilearn/global_widgets/name_textfield.dart';
 import 'package:ilearn/global_widgets/password_textfield.dart';
+import 'package:ilearn/models/user.dart';
 import 'package:ilearn/screens/dashboard/homepage.dart';
 import 'package:ilearn/screens/authentication/signup_screen.dart';
+import 'package:ilearn/services/auth.dart';
 import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/strings.dart';
 import 'package:ilearn/styling/text_styles.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final AuthServices _auth = AuthServices();
+  String error = '';
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +60,37 @@ class LoginScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  LogoButton(
-                    btnText: 'Google',
-                    btnImagePath: 'googleLogo.svg',
-                    btnColor: AppColor.white,
+                  InkWell(
+                    onTap: () async {
+                      showDialog(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (context) {
+                            return AlertDialog(
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  CircularProgressIndicator(),
+                                ],
+                              ),
+                            );
+                          });
+                      try {
+                        UserModel result = await _auth.signInUsingGoogle();
+                        if (result == null) {
+                          setState(() {
+                            error = 'Could not Sign In with Google';
+                          });
+                        } else {
+                          Get.offAll(HomePage());
+                        }
+                      } catch (e) {}
+                    },
+                    child: LogoButton(
+                      btnText: 'Google',
+                      btnImagePath: 'googleLogo.svg',
+                      btnColor: AppColor.white,
+                    ),
                   ),
                   LogoButton(
                     btnText: 'Facebook',
@@ -61,17 +104,35 @@ class LoginScreen extends StatelessWidget {
                 height: 25,
               ),
               NameTextField(
-                hintText: 'Username',
-                imagePath: 'profile.png',
+                hintText: 'Email',
+                imagePath: 'sms.png',
+                controller: emailController,
               ),
-              PasswordTextField(),
+              PasswordTextField(
+                passwordController: passwordController,
+              ),
               SizedBox(
                 height: 50,
               ),
               CustomButton(
                 btnText: 'Login',
-                callback: () => Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => HomePage())),
+                callback: () async {
+                  if (_formKey.currentState!.validate()) {
+                    setState(() {});
+                    dynamic result = await _auth.signInUsingMail(
+                        emailController.text, passwordController.text);
+                    if (result == null) {
+                      setState(() {
+                        error = 'Could not Sign In with the Credentials';
+                        if (kDebugMode) {
+                          print(error);
+                        }
+                      });
+                    } else {
+                      Get.offAll(() => HomePage());
+                    }
+                  }
+                },
               ),
               SizedBox(
                 height: 45,

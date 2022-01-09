@@ -3,15 +3,14 @@ import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/text_styles.dart';
 
 class PasswordTextField extends StatefulWidget {
-  const PasswordTextField({Key? key}) : super(key: key);
-
+  const PasswordTextField({Key? key, required this.passwordController})
+      : super(key: key);
+  final TextEditingController passwordController;
   @override
   _PasswordTextFieldState createState() => _PasswordTextFieldState();
 }
 
 class _PasswordTextFieldState extends State<PasswordTextField> {
-  final passwordController = TextEditingController();
-
   bool isObscure = true;
 
   void showPassword() {
@@ -29,7 +28,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       child: TextField(
         keyboardType: TextInputType.text,
         style: smallTextStyle,
-        controller: passwordController,
+        controller: widget.passwordController,
         obscureText: isObscure,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 18),
