@@ -33,7 +33,7 @@ class LogoButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(
-            'assets/svgs/$btnImagePath',
+            'assets/svgs/logo/$btnImagePath',
             height: 25,
             width: 25,
             alignment: Alignment.topCenter,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ilearn/screens/dashboard/dashboard_page.dart';
 import 'package:ilearn/screens/dashboard/profile.dart';
-import 'package:ilearn/screens/dashboard/redeem.dart';
+import 'package:ilearn/screens/redeem_section/redeem.dart';
 import 'package:ilearn/screens/dashboard/validation.dart';
 import 'package:ilearn/styling/colors.dart';
 

@@ -29,7 +29,7 @@ class LearnCreditContainer extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SvgPicture.asset('assets/svgs/lc.svg'),
+              SvgPicture.asset('assets/svgs/logo/lc.svg'),
               SizedBox(
                 width: 5,
               ),
