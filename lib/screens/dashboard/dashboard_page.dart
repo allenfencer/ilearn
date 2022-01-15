@@ -5,8 +5,15 @@ import 'package:ilearn/dashboard_components/learn_credit_container.dart';
 import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/text_styles.dart';
 
-class DashBoard extends StatelessWidget {
+class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
+
+  @override
+  State<DashBoard> createState() => _DashBoardState();
+}
+
+class _DashBoardState extends State<DashBoard> {
+  String username = 'Allen';
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +37,7 @@ class DashBoard extends StatelessWidget {
                     height: 5,
                   ),
                   Text(
-                    'Welcome Allen,',
+                    'Welcome $username,',
                     style: smallTextStyle,
                   ),
                   LearnCreditContainer(),

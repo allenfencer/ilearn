@@ -158,10 +158,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LoginScreen()));
+                              Get.off(LoginScreen());
                             })
                     ]))
               ],

@@ -41,7 +41,7 @@ class StudentDatabaseService {
   }
 
 // Pull Data
-  StudentData _participantDataFromSnapshot(
+  StudentData participantDataFromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> snapshot) {
     return StudentData(
       uid: uid,
