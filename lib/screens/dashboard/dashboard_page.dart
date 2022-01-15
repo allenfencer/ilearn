@@ -13,7 +13,7 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  String username = 'Allen';
+  String username = 'User';
 
   @override
   Widget build(BuildContext context) {
