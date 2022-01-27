@@ -8,12 +8,17 @@ class StudentDatabaseService {
   final CollectionReference<Map<String, dynamic>> participant =
       FirebaseFirestore.instance.collection('student');
 
-  Future checkUserData(
-      {required String username,
-      required String mail,
-      String? phoneNum,
-      String? organization,
-      int? age}) async {
+  Future checkUserData({
+    required String username,
+    required String mail,
+    String? phoneNum,
+    String? organization,
+    int? age,
+    String? about,
+    int? streak,
+    int? credits,
+    List<String>? certificates,
+  }) async {
     var checkCustomer = await participant.doc(uid).get();
     if (!checkCustomer.exists) {
       updateUserData(
@@ -21,6 +26,10 @@ class StudentDatabaseService {
         phoneNum: phoneNum ?? '',
         mail: mail,
         organization: organization ?? '',
+        about: about ?? '',
+        streak: streak ?? 0,
+        credits: 0,
+        certificates: certificates ?? [],
       );
     }
   }
@@ -31,12 +40,20 @@ class StudentDatabaseService {
     String? mail,
     String? phoneNum,
     String? organization,
+    String? about,
+    int? streak,
+    int? credits,
+    List<String>? certificates,
   }) async {
     await participant.doc(uid).set({
       'username': username,
       'mail': mail,
       'phoneNum': phoneNum,
       'organization': organization,
+      'about': about,
+      'streak': streak,
+      'credits': credits,
+      'certificates': certificates,
     });
   }
 
@@ -49,6 +66,14 @@ class StudentDatabaseService {
       mail: snapshot.data()!['mail'],
       phoneNum: snapshot.data()!['phoneNum'],
       organization: snapshot.data()!['organization'],
+      about: snapshot.data()!['about'],
+      streak: snapshot.data()!['streak'],
+      credits: snapshot.data()!['credits'],
+      certificates: snapshot.data()!['certificates'],
     );
+  }
+
+  Stream<StudentData> get customerData {
+    return participant.doc(uid).snapshots().map(participantDataFromSnapshot);
   }
 }
