@@ -9,32 +9,58 @@ class Validation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        extendBody: true,
         body: SafeArea(
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                'assets/svgs/logo/pageUnderConstruction.svg',
-                height: 200,
-                width: 300,
-              ),
-              Container(
-                padding: EdgeInsets.all(20),
-                margin: EdgeInsets.symmetric(horizontal: 25, vertical: 50),
-                decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(25)),
-                child: Text(
-                  'This page is under development.',
-                  style: headingStyle,
-                  textAlign: TextAlign.center,
-                ),
-              )
-            ]),
-      ),
-    ));
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        decoration:
+                            BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                        clipBehavior: Clip.antiAlias,
+                        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                        child: TextFormField(
+                          controller: null,
+                          keyboardType: TextInputType.text,
+                          style: smallTextStyle,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+                            fillColor: AppColor.white,
+                            filled: true,
+                            border: InputBorder.none,
+                            hintStyle: smallTextStyle,
+                            hintText: 'Enter certificate url for validation',
+                          ),
+                        ),
+                      ),
+                      
+                    ],
+                  ),
+                  SvgPicture.asset(
+                    'assets/svgs/logo/pageUnderConstruction.svg',
+                    height: 200,
+                    width: 300,
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    margin: EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+                    decoration: BoxDecoration(
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(25)),
+                    child: Text(
+                      'This page is under development.',
+                      style: headingStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                ]),
+          ),
+        ));
   }
 }

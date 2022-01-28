@@ -1,3 +1,4 @@
+import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ilearn/screens/dashboard/dashboard_page.dart';
@@ -26,60 +27,119 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.white,
+      extendBody: true,
       body: screens[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        enableFeedback: true,
-        showUnselectedLabels: false,
-        backgroundColor: AppColor.white,
+      bottomNavigationBar: DotNavigationBar(
+        borderRadius: 20,
+        enableFloatingNavBar: true,
+        margin: EdgeInsets.only(left: 10, right: 10),
         currentIndex: currentIndex,
-        elevation: 0,
+        dotIndicatorColor: Colors.white,
+        backgroundColor: Colors.grey[300],
+        unselectedItemColor: Colors.grey[300],
         onTap: (index) {
           setState(() {
             currentIndex = index;
           });
         },
-        type: BottomNavigationBarType.fixed,
         items: [
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                currentIndex == 0
-                    ? 'assets/svgs/icons/homeIcon.svg'
-                    : 'assets/svgs/icons/homeIconGrey.svg',
-                height: 25,
-                width: 25,
-              ),
-              label: 'Dashboard'),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                currentIndex == 1
-                    ? 'assets/svgs/icons/validationIcon.svg'
-                    : 'assets/svgs/icons/validationIconGrey.svg',
-                height: 25,
-                width: 25,
-              ),
-              label: 'Validation'),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                currentIndex == 2
-                    ? 'assets/svgs/icons/redeemIcon.svg'
-                    : 'assets/svgs/icons/redeemIconGrey.svg',
-                height: 25,
-                width: 25,
-              ),
-              label: 'Redeem'),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                currentIndex == 3
-                    ? 'assets/svgs/icons/profileIcon.svg'
-                    : 'assets/svgs/icons/profileIconGrey.svg',
-                height: 25,
-                width: 25,
-              ),
-              label: 'Profile'),
+          /// Home
+          DotNavigationBarItem(
+            icon: SvgPicture.asset(
+              currentIndex == 0
+                  ? 'assets/svgs/icons/homeIcon.svg'
+                  : 'assets/svgs/icons/homeIconGrey.svg',
+              height: 25,
+              width: 25,
+            ),
+          ),
+
+          /// Likes
+          DotNavigationBarItem(
+            icon: SvgPicture.asset(
+              currentIndex == 1
+                  ? 'assets/svgs/icons/validationIcon.svg'
+                  : 'assets/svgs/icons/validationIconGrey.svg',
+              height: 25,
+              width: 25,
+            ),
+          ),
+
+          /// Search
+          DotNavigationBarItem(
+            icon: SvgPicture.asset(
+              currentIndex == 2
+                  ? 'assets/svgs/icons/redeemIcon.svg'
+                  : 'assets/svgs/icons/redeemIconGrey.svg',
+              height: 25,
+              width: 25,
+            ),
+          ),
+
+          /// Profile
+          DotNavigationBarItem(
+            icon: SvgPicture.asset(
+              currentIndex == 3
+                  ? 'assets/svgs/icons/profileIcon.svg'
+                  : 'assets/svgs/icons/profileIconGrey.svg',
+              height: 25,
+              width: 25,
+            ),
+          ),
         ],
       ),
     );
+    // bottomNavigationBar: BottomNavigationBar(
+    //   showSelectedLabels: false,
+    //   enableFeedback: true,
+    //   showUnselectedLabels: false,
+    //   backgroundColor: AppColor.black,
+    //   currentIndex: currentIndex,
+    //   elevation: 0,
+    //   onTap: (index) {
+    //     setState(() {
+    //       currentIndex = index;
+    //     });
+    //   },
+    //   type: BottomNavigationBarType.fixed,
+    //   items: [
+    //     BottomNavigationBarItem(
+    //         icon: SvgPicture.asset(
+    //           currentIndex == 0
+    //               ? 'assets/svgs/icons/homeIcon.svg'
+    //               : 'assets/svgs/icons/homeIconGrey.svg',
+    //           height: 25,
+    //           width: 25,
+    //         ),
+    //         label: 'Dashboard'),
+    //     BottomNavigationBarItem(
+    //         icon: SvgPicture.asset(
+    //           currentIndex == 1
+    //               ? 'assets/svgs/icons/validationIcon.svg'
+    //               : 'assets/svgs/icons/validationIconGrey.svg',
+    //           height: 25,
+    //           width: 25,
+    //         ),
+    //         label: 'Validation'),
+    //     BottomNavigationBarItem(
+    //         icon: SvgPicture.asset(
+    //           currentIndex == 2
+    //               ? 'assets/svgs/icons/redeemIcon.svg'
+    //               : 'assets/svgs/icons/redeemIconGrey.svg',
+    //           height: 25,
+    //           width: 25,
+    //         ),
+    //         label: 'Redeem'),
+    //     BottomNavigationBarItem(
+    //         icon: SvgPicture.asset(
+    //           currentIndex == 3
+    //               ? 'assets/svgs/icons/profileIcon.svg'
+    //               : 'assets/svgs/icons/profileIconGrey.svg',
+    //           height: 25,
+    //           width: 25,
+    //         ),
+    //         label: 'Profile'),
+    //   ],
+    // ),
   }
 }

@@ -22,6 +22,15 @@ const TextStyle btnTextStyle = TextStyle(
   wordSpacing: 1,
 );
 
+TextStyle boldTextStyle(Color color) {
+  return TextStyle(
+    color: color,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 0.8,
+  );
+}
+
 const TextStyle mediumTextStyle =
     TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: AppColor.white);
 

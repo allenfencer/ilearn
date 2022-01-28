@@ -17,6 +17,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: SafeArea(
