@@ -31,7 +31,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.bgColor,
+      backgroundColor: AppColor.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
@@ -90,14 +90,13 @@ class _SignUpState extends State<SignUp> {
                       child: LogoButton(
                         btnText: 'Google',
                         btnImagePath: 'googleLogo.svg',
-                        btnColor: AppColor.white,
+                        btnColor: AppColor.grey,
                       ),
                     ),
                     LogoButton(
-                      btnText: 'Facebook',
+                      btnText: 'Microsoft',
                       btnImagePath: 'fbLogo.svg',
-                      btnColor: AppColor.primaryColor,
-                      btnTextColor: AppColor.white,
+                      btnColor: AppColor.white,
                     )
                   ],
                 ),

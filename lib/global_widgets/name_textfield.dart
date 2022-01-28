@@ -27,7 +27,7 @@ class NameTextField extends StatelessWidget {
         style: smallTextStyle,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-          fillColor: AppColor.white,
+          fillColor: Color(0xffF2F2F2),
           filled: true,
           border: InputBorder.none,
           prefixIcon: Image.asset('assets/images/$imagePath'),

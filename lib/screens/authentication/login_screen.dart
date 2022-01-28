@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.bgColor,
+      backgroundColor: AppColor.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -89,14 +89,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: LogoButton(
                       btnText: 'Google',
                       btnImagePath: 'googleLogo.svg',
-                      btnColor: AppColor.white,
+                      btnColor: AppColor.grey,
                     ),
                   ),
                   LogoButton(
-                    btnText: 'Facebook',
-                    btnImagePath: 'fbLogo.svg',
-                    btnColor: AppColor.primaryColor,
-                    btnTextColor: AppColor.white,
+                    btnText: 'Microsoft',
+                    btnImagePath: 'logo.svg',
+                    btnColor: AppColor.white,
                   )
                 ],
               ),

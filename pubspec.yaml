@@ -45,14 +45,14 @@ dependencies:
 
 
 flutter_native_splash:
-  background_image: "assets/splashscreen.png"
+  background_image: "assets/splash_screen.png"
   web: false
 
 flutter_icons:
   android: "launcher_icon"
   ios: false
   remove_alpha_ios: true
-  image_path: "assets/logo.png"
+  image_path: "assets/ilearn_logo.png"
 
 dev_dependencies:
 
@@ -82,6 +82,8 @@ flutter:
     - assets/gifts_images/
     - assets/svgs/icons/
     - assets/svgs/logo/
+    - assets/
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

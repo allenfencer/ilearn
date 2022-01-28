@@ -3,7 +3,7 @@ import 'package:ilearn/styling/colors.dart';
 
 const TextStyle headingStyle = TextStyle(
   fontSize: 24,
-  color: AppColor.primaryColor,
+  color: AppColor.secondaryColor,
   fontWeight: FontWeight.w700,
   wordSpacing: 1,
 );
@@ -22,12 +22,22 @@ const TextStyle btnTextStyle = TextStyle(
   wordSpacing: 1,
 );
 
-TextStyle boldTextStyle(Color color) {
+TextStyle boldTextStyle(
+  Color color,
+) {
   return TextStyle(
     color: color,
     fontSize: 20,
     fontWeight: FontWeight.bold,
-    letterSpacing: 0.8,
+    letterSpacing: 0.7,
+  );
+}
+
+TextStyle colouredBoldTextStyle(Color color, double? size) {
+  return TextStyle(
+    color: color,
+    fontSize: size ?? 20,
+    fontWeight: FontWeight.bold,
   );
 }
 

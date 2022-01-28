@@ -10,8 +10,24 @@ class Redeem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       extendBody: true,
       backgroundColor: AppColor.white,
+      appBar: AppBar(
+        backgroundColor: AppColor.white,
+        elevation: 0,
+        title: Text(
+          'Available Credits: 1.234 LC',
+          style: colouredBoldTextStyle(AppColor.secondaryColor,18),
+        ),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 10.0),
+          child: CircleAvatar(
+            backgroundColor: Colors.grey[100],
+            child: Icon(Icons.person),
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -22,11 +38,7 @@ class Redeem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 50,
-                ),
-                Text(
-                  'Claim your rewards!!! 🥳',
-                  style: headingStyle,
+                  height: 20,
                 ),
                 ListView.builder(
                     shrinkWrap: true,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:ilearn/styling/colors.dart';
 
 class LogoButton extends StatelessWidget {
   final Color? btnColor;
@@ -25,6 +26,13 @@ class LogoButton extends StatelessWidget {
       height: 60,
       width: 130,
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+              color: Colors.grey.shade200,
+              blurRadius: 10,
+              spreadRadius: 5,
+              offset: Offset(5, 3))
+        ],
         borderRadius: BorderRadius.circular(20),
         color: btnColor,
       ),

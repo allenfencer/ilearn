@@ -44,7 +44,7 @@ class GiftTile extends StatelessWidget {
                 children: [
                   Text(
                     itemName,
-                    style: boldTextStyle(AppColor.white),
+                    style: boldTextStyle(AppColor.white,),
                   ),
                   TextButton(
                       onPressed: () {},
@@ -56,7 +56,7 @@ class GiftTile extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15))),
                       child: Text(
                         '$itemCredit LC',
-                        style: boldTextStyle(AppColor.secondaryColor),
+                        style: boldTextStyle(AppColor.secondaryColor,),
                       ))
                 ],
               ),

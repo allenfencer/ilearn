@@ -17,30 +17,33 @@ class Validation extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Row(
-                    children: [
-                      Container(
-                        decoration:
-                            BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                        clipBehavior: Clip.antiAlias,
-                        margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-                        child: TextFormField(
-                          controller: null,
-                          keyboardType: TextInputType.text,
-                          style: smallTextStyle,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-                            fillColor: AppColor.white,
-                            filled: true,
-                            border: InputBorder.none,
-                            hintStyle: smallTextStyle,
-                            hintText: 'Enter certificate url for validation',
+                  Container(
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                    clipBehavior: Clip.antiAlias,
+                    margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                    child: TextFormField(
+                      controller: null,
+                      keyboardType: TextInputType.text,
+                      style: smallTextStyle,
+                      decoration: InputDecoration(
+                        suffixIcon: GestureDetector(
+                          onTap: () {},
+                          child: Icon(
+                            Icons.send_sharp,
+                            size: 20,
+                            color: AppColor.primaryColor,
                           ),
                         ),
+                        contentPadding:
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+                        fillColor: AppColor.white,
+                        filled: true,
+                        border: InputBorder.none,
+                        hintStyle: smallTextStyle,
+                        hintText: 'Enter certificate url for validation',
                       ),
-                      
-                    ],
+                    ),
                   ),
                   SvgPicture.asset(
                     'assets/svgs/logo/pageUnderConstruction.svg',
