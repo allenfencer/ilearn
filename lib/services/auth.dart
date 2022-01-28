@@ -9,6 +9,7 @@ class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
+  late String uid;
   UserModel _userFromFireBase(User user) {
     return UserModel(uid: user.uid);
   }
@@ -18,6 +19,11 @@ class AuthServices {
         .authStateChanges()
         .map((User? user) => _userFromFireBase(user!));
   }
+
+  // get getUid async {
+  //   var x = await uid;
+  //   return x;
+  // }
 
   Future signInUsingGoogle() async {
     try {
@@ -34,7 +40,8 @@ class AuthServices {
         username: user.displayName!,
         mail: user.email!,
       );
-
+      uid = user.uid;
+      print(uid);
       return _userFromFireBase(user);
     } catch (e) {
       print(e.toString());
@@ -54,6 +61,8 @@ class AuthServices {
         mail: email,
         organization: organization,
       );
+      uid = user.uid;
+
       return _userFromFireBase(user);
     } catch (e) {
       print(e.toString());
@@ -66,7 +75,8 @@ class AuthServices {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
-      return _userFromFireBase(user!);
+      uid = user!.uid;
+      return _userFromFireBase(user);
     } catch (e) {
       print(e.toString());
       return null;

@@ -5,7 +5,7 @@ class StudentDatabaseService {
   final String uid;
   StudentDatabaseService({this.uid = ''});
 
-  final CollectionReference<Map<String, dynamic>> participant =
+  final CollectionReference<Map<String, dynamic>> student =
       FirebaseFirestore.instance.collection('student');
 
   Future checkUserData({
@@ -17,19 +17,19 @@ class StudentDatabaseService {
     String? about,
     int? streak,
     int? credits,
-    List<String>? certificates,
+    // List<String>? certificates,
   }) async {
-    var checkCustomer = await participant.doc(uid).get();
-    if (!checkCustomer.exists) {
+    var checkStudent = await student.doc(uid).get();
+    if (!checkStudent.exists) {
       updateUserData(
         username: username,
-        phoneNum: phoneNum ?? '',
+        phoneNum: phoneNum ?? '-',
         mail: mail,
-        organization: organization ?? '',
-        about: about ?? '',
-        streak: streak ?? 0,
-        credits: 0,
-        certificates: certificates ?? [],
+        organization: organization ?? 'iLearn',
+        about: about ?? 'iLearn User | Tech Enthusiast',
+        streak: streak ?? 1,
+        credits: 10,
+        // certificates: certificates ?? [],
       );
     }
   }
@@ -43,9 +43,9 @@ class StudentDatabaseService {
     String? about,
     int? streak,
     int? credits,
-    List<String>? certificates,
+    // List<String>? certificates,
   }) async {
-    await participant.doc(uid).set({
+    await student.doc(uid).set({
       'username': username,
       'mail': mail,
       'phoneNum': phoneNum,
@@ -53,27 +53,33 @@ class StudentDatabaseService {
       'about': about,
       'streak': streak,
       'credits': credits,
-      'certificates': certificates,
+      // 'certificates': certificates,
     });
   }
 
 // Pull Data
-  StudentData participantDataFromSnapshot(
+  StudentData studentDataFromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> snapshot) {
     return StudentData(
       uid: uid,
-      name: snapshot.data()!['username'],
+      username: snapshot.data()!['username'],
       mail: snapshot.data()!['mail'],
       phoneNum: snapshot.data()!['phoneNum'],
       organization: snapshot.data()!['organization'],
       about: snapshot.data()!['about'],
       streak: snapshot.data()!['streak'],
       credits: snapshot.data()!['credits'],
-      certificates: snapshot.data()!['certificates'],
+      // certificates: snapshot.data()!['certificates'],
     );
   }
 
-  Stream<StudentData> get customerData {
-    return participant.doc(uid).snapshots().map(participantDataFromSnapshot);
+  Stream<StudentData> get studentDataStream {
+    print("1");
+    print(uid);
+    print(student.doc(uid).snapshots());
+    print(student.doc(uid).snapshots().map(studentDataFromSnapshot));
+    print(student.doc(uid).snapshots().map(studentDataFromSnapshot).first);
+
+    return student.doc(uid).snapshots().map(studentDataFromSnapshot);
   }
 }
