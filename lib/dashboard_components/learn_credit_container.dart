@@ -4,7 +4,9 @@ import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/text_styles.dart';
 
 class LearnCreditContainer extends StatelessWidget {
-  const LearnCreditContainer({Key? key}) : super(key: key);
+  const LearnCreditContainer({Key? key, required this.credits})
+      : super(key: key);
+  final int credits;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class LearnCreditContainer extends StatelessWidget {
                 width: 5,
               ),
               Text(
-                '1.234',
+                credits.toString(),
                 style: mediumTextStyle,
               ),
             ],

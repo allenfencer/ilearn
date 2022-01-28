@@ -74,12 +74,6 @@ class StudentDatabaseService {
   }
 
   Stream<StudentData> get studentDataStream {
-    print("1");
-    print(uid);
-    print(student.doc(uid).snapshots());
-    print(student.doc(uid).snapshots().map(studentDataFromSnapshot));
-    print(student.doc(uid).snapshots().map(studentDataFromSnapshot).first);
-
     return student.doc(uid).snapshots().map(studentDataFromSnapshot);
   }
 }
