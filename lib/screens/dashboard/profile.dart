@@ -34,6 +34,7 @@ class _ProfileState extends State<Profile> {
                 final studentData = snapshot.data;
                 // print(object)
                 return Scaffold(
+                  extendBody: true,
                   body: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: SafeArea(

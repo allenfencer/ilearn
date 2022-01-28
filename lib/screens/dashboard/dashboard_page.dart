@@ -19,6 +19,7 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     return Scaffold(
+      extendBody: true,
       backgroundColor: AppColor.white,
       body: SafeArea(
         child: Padding(
