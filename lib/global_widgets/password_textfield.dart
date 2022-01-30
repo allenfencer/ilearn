@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/text_styles.dart';
 
 class PasswordTextField extends StatefulWidget {
@@ -41,8 +40,9 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           border: InputBorder.none,
           prefixIcon: Image.asset('assets/images/key-square.png'),
           suffixIcon: GestureDetector(
-              onTap: showPassword,
-              child: Image.asset('assets/images/Eye-slash.png')),
+            onTap: showPassword,
+            child: Image.asset('assets/images/Eye-slash.png'),
+          ),
           hintStyle: smallTextStyle,
           hintText: 'Password',
         ),

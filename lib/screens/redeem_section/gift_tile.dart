@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/text_styles.dart';
@@ -44,19 +42,23 @@ class GiftTile extends StatelessWidget {
                 children: [
                   Text(
                     itemName,
-                    style: boldTextStyle(AppColor.white,),
+                    style: boldTextStyle(
+                      AppColor.white,
+                    ),
                   ),
                   TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
                           alignment: Alignment.center,
                           padding: EdgeInsets.all(10),
-                          backgroundColor: AppColor.black,
+                          backgroundColor: Color(0xfff5f5f5),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15))),
                       child: Text(
                         '$itemCredit LC',
-                        style: boldTextStyle(AppColor.secondaryColor,),
+                        style: boldTextStyle(
+                          AppColor.secondaryColor,
+                        ),
                       ))
                 ],
               ),

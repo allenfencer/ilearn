@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ilearn/styling/colors.dart';
 
 class LogoButton extends StatelessWidget {
   final Color? btnColor;

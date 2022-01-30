@@ -33,40 +33,41 @@ class _DashBoardState extends State<DashBoard> {
               child: Consumer<UserModel>(
                 builder: (context, student, child) {
                   return StreamBuilder<StudentData>(
-                      stream: StudentDatabaseService(uid: student.uid)
-                          .studentDataStream,
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          final studentData = snapshot.data;
+                    stream: StudentDatabaseService(uid: student.uid)
+                        .studentDataStream,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        final studentData = snapshot.data;
 
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Dashboard',
-                                style: headingStyle,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                'Welcome ${studentData!.username},',
-                                style: smallTextStyle,
-                              ),
-                              LearnCreditContainer(
-                                credits: studentData.credits,
-                              ),
-                              ButtonRowOne(),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              ButtonRowTwo()
-                            ],
-                          );
-                        } else {
-                          return Center(child: CircularProgressIndicator());
-                        }
-                      });
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Dashboard',
+                              style: headingStyle,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              'Welcome ${studentData!.username},',
+                              style: smallTextStyle,
+                            ),
+                            LearnCreditContainer(
+                              credits: studentData.credits,
+                            ),
+                            ButtonRowOne(),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            ButtonRowTwo()
+                          ],
+                        );
+                      } else {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                    },
+                  );
                 },
               ),
             ),

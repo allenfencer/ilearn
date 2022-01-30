@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/text_styles.dart';
 
 class NameTextField extends StatelessWidget {

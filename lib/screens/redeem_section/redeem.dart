@@ -48,6 +48,7 @@ class Redeem extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: SizedBox(
@@ -72,8 +73,17 @@ class Redeem extends StatelessWidget {
                         tileColor: giftData.giftContainerColor,
                       );
                     }),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
-                // GridView.builder(
+
+// GridView.builder(
                 //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 //         crossAxisCount: 2,
                 //         mainAxisSpacing: 10,
@@ -90,11 +100,3 @@ class Redeem extends StatelessWidget {
                 //         price: gift.price,
                 //       );
                 //     }),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
