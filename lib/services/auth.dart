@@ -49,17 +49,14 @@ class AuthServices {
     }
   }
 
-  Future signUpUsingEmail(email, password,
-      {String? username, String? organization, String? expertise}) async {
+  Future signUpUsingEmail(email, password, {String? username}) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
       StudentDatabaseService(uid: user!.uid).updateUserData(
         username: username,
-        phoneNum: '',
         mail: email,
-        organization: organization,
       );
       uid = user.uid;
 
