@@ -95,7 +95,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     LogoButton(
                       btnText: 'Microsoft',
-                      btnImagePath: 'fbLogo.svg',
+                      btnImagePath: 'msftLogo.svg',
                       btnColor: AppColor.white,
                     )
                   ],

@@ -379,8 +379,7 @@ packages:
       name: plugin_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-<<<<<<< Updated upstream
-    version: "2.0.2"
+    version: "2.1.2"
   provider:
     dependency: "direct main"
     description:
@@ -388,9 +387,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.0.2"
-=======
-    version: "2.1.2"
->>>>>>> Stashed changes
   quiver:
     dependency: transitive
     description:

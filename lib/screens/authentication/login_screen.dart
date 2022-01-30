@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   LogoButton(
                     btnText: 'Microsoft',
-                    btnImagePath: 'logo.svg',
+                    btnImagePath: 'msftLogo.svg',
                     btnColor: AppColor.white,
                   )
                 ],
