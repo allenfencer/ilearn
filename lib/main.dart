@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ilearn/models/user.dart';
 import 'package:ilearn/screens/authentication/login_screen.dart';
 import 'package:get/get.dart';
+import 'package:ilearn/screens/dashboard/homepage.dart';
 import 'package:ilearn/services/auth.dart';
 import 'package:provider/provider.dart';
 
@@ -26,8 +27,19 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.orange,
           fontFamily: 'SourceSansPro',
         ),
-        home: LoginScreen(),
+        home: Wrapper(),
       ),
     );
+  }
+}
+
+class Wrapper extends StatelessWidget {
+  const Wrapper({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final UserModel user = Provider.of<UserModel>(context);
+
+    return user.uid != '' ? HomePage() : LoginScreen();
   }
 }
