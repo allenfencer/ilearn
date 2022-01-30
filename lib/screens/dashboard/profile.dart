@@ -32,7 +32,6 @@ class _ProfileState extends State<Profile> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final studentData = snapshot.data;
-
                 return Scaffold(
                   extendBody: true,
                   body: Padding(

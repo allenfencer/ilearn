@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ilearn/models/gift_tile_model.dart';
+import 'package:ilearn/models/student.dart';
+import 'package:ilearn/models/user.dart';
 import 'package:ilearn/screens/redeem_section/gift_tile.dart';
+import 'package:ilearn/services/database.dart';
 import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/text_styles.dart';
+import 'package:provider/provider.dart';
 
 class Redeem extends StatelessWidget {
   const Redeem({Key? key}) : super(key: key);
@@ -16,12 +20,27 @@ class Redeem extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColor.white,
         elevation: 0,
-        title: Text(
-          'Available Credits: 1.234 LC',
-          style: colouredBoldTextStyle(AppColor.secondaryColor,18),
+        title: Consumer<UserModel>(
+          builder: (context, student, child) {
+            return StreamBuilder<StudentData>(
+                stream:
+                    StudentDatabaseService(uid: student.uid).studentDataStream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    final studentData = snapshot.data;
+                    return Text(
+                      'Available Credits: ${studentData!.credits} LC',
+                      style: colouredBoldTextStyle(AppColor.secondaryColor, 18),
+                    );
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                });
+          },
         ),
+        toolbarHeight: 70,
         leading: Padding(
-          padding: const EdgeInsets.only(left: 10.0),
+          padding: const EdgeInsets.only(left: 15.0),
           child: CircleAvatar(
             backgroundColor: Colors.grey[100],
             child: Icon(Icons.person),

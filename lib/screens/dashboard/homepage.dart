@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
         enableFloatingNavBar: true,
         margin: EdgeInsets.only(left: 10, right: 10),
         currentIndex: currentIndex,
-        dotIndicatorColor: AppColor.primaryColor,
+        dotIndicatorColor: Colors.transparent,
         backgroundColor: Colors.grey[200],
         unselectedItemColor: Colors.grey[300],
         onTap: (index) {
