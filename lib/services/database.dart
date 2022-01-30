@@ -48,11 +48,11 @@ class StudentDatabaseService {
     await student.doc(uid).set({
       'username': username,
       'mail': mail,
-      'phoneNum': phoneNum,
-      'organization': organization,
-      'about': about,
-      'streak': streak,
-      'credits': credits,
+      'phoneNum': phoneNum ?? '-',
+      'organization': organization ?? 'iLearn',
+      'about': about ?? 'iLearn User | Tech Enthusiast',
+      'streak': streak ?? 1,
+      'credits': 10,
       // 'certificates': certificates,
     });
   }
