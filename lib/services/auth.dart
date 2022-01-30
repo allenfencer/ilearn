@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:ilearn/models/user.dart';
@@ -37,7 +35,6 @@ class AuthServices {
         mail: user.email!,
       );
       uid = user.uid;
-      print(uid);
       return _userFromFireBase(user);
     } catch (e) {
       Get.snackbar('Error', e.toString().replaceAll('firebase', 'Auth'));
@@ -54,8 +51,6 @@ class AuthServices {
         username: username,
         mail: email,
       );
-      print(user.email);
-      print(user);
 
       uid = user.uid;
       return _userFromFireBase(user);
