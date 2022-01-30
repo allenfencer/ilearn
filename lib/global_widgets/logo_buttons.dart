@@ -46,6 +46,9 @@ class LogoButton extends StatelessWidget {
             width: 25,
             alignment: Alignment.topCenter,
           ),
+          SizedBox(
+            width: 2,
+          ),
           Text(
             btnText,
             style: TextStyle(

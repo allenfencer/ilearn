@@ -30,12 +30,14 @@ class _HomePageState extends State<HomePage> {
       extendBody: true,
       body: screens[currentIndex],
       bottomNavigationBar: DotNavigationBar(
-        borderRadius: 20,
+        paddingR: EdgeInsets.only(top: 10, bottom: 10),
+        marginR: EdgeInsets.only(left: 30, right: 30, bottom: 20),
+        borderRadius: 30,
         enableFloatingNavBar: true,
         margin: EdgeInsets.only(left: 10, right: 10),
         currentIndex: currentIndex,
-        dotIndicatorColor: Colors.white,
-        backgroundColor: Colors.grey[300],
+        dotIndicatorColor: AppColor.primaryColor,
+        backgroundColor: Colors.grey[200],
         unselectedItemColor: Colors.grey[300],
         onTap: (index) {
           setState(() {

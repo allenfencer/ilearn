@@ -91,12 +91,14 @@ class _SignUpState extends State<SignUp> {
                         btnText: 'Google',
                         btnImagePath: 'googleLogo.svg',
                         btnColor: AppColor.grey,
+                        btnTextColor: AppColor.white,
                       ),
                     ),
                     LogoButton(
                       btnText: 'Microsoft',
-                      btnImagePath: 'msftLogo.svg',
+                      btnImagePath: 'microsoft-icon.svg',
                       btnColor: AppColor.white,
+                      btnTextColor: AppColor.grey,
                     )
                   ],
                 ),

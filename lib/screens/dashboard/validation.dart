@@ -66,7 +66,7 @@ class _ValidationState extends State<Validation> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 70,
+                    height: 50,
                   ),
                   Center(
                     child: Text(
