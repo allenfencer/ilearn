@@ -3,7 +3,7 @@ import 'package:ilearn/styling/colors.dart';
 
 const TextStyle headingStyle = TextStyle(
   fontSize: 24,
-  color: AppColor.secondaryColor,
+  color: AppColor.primaryColor,
   fontWeight: FontWeight.w700,
   wordSpacing: 1,
 );

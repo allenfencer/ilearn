@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
 import 'package:ilearn/models/user.dart';
 import 'package:ilearn/services/database.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -19,11 +20,6 @@ class AuthServices {
         .authStateChanges()
         .map((User? user) => _userFromFireBase(user!));
   }
-
-  // get getUid async {
-  //   var x = await uid;
-  //   return x;
-  // }
 
   Future signInUsingGoogle() async {
     try {
@@ -44,7 +40,7 @@ class AuthServices {
       print(uid);
       return _userFromFireBase(user);
     } catch (e) {
-      print(e.toString());
+      Get.snackbar('Error', e.toString().replaceAll('firebase', 'Auth'));
       return null;
     }
   }
@@ -58,11 +54,14 @@ class AuthServices {
         username: username,
         mail: email,
       );
-      uid = user.uid;
+      print(user.email);
+      print(user);
 
+      uid = user.uid;
       return _userFromFireBase(user);
     } catch (e) {
-      print(e.toString());
+      Get.snackbar(
+          'Error Registering', e.toString().replaceAll('firebase', 'Auth'));
       return null;
     }
   }
@@ -75,7 +74,8 @@ class AuthServices {
       uid = user!.uid;
       return _userFromFireBase(user);
     } catch (e) {
-      print(e.toString());
+      Get.snackbar(
+          'Error Logging In', e.toString().replaceAll('firebase', 'Auth'));
       return null;
     }
   }
@@ -84,7 +84,8 @@ class AuthServices {
     try {
       await _auth.signOut();
     } catch (e) {
-      print(e.toString());
+      Get.snackbar(
+          'Error Signing Out', e.toString().replaceAll('firebase', 'Auth'));
       return null;
     }
   }

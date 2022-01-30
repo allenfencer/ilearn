@@ -22,10 +22,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _formKey = GlobalKey<FormState>();
   final AuthServices _auth = AuthServices();
-  String error = 'no error';
-  final TextEditingController userNameController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -35,112 +33,125 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: AppColor.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 50,
-              ),
-              Text(
-                loginMsg,
-                style: headingStyle,
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Text(
-                signIn,
-                style: smallTextStyle,
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  InkWell(
-                    onTap: () async {
-                      showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (context) {
-                            return AlertDialog(
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  CircularProgressIndicator(),
-                                ],
-                              ),
-                            );
-                          });
-                      try {
-                        UserModel result = await _auth.signInUsingGoogle();
-                        if (kDebugMode) {
-                          print(result);
+          physics: BouncingScrollPhysics(),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  loginMsg,
+                  style: headingStyle,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  signIn,
+                  style: smallTextStyle,
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    InkWell(
+                      onTap: () async {
+                        showDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            builder: (context) {
+                              return AlertDialog(
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    CircularProgressIndicator(),
+                                  ],
+                                ),
+                              );
+                            });
+                        try {
+                          UserModel result = await _auth.signInUsingGoogle();
+                          if (kDebugMode) {
+                            print(result);
+                          }
+                          Get.offAll(HomePage());
+                        } catch (e) {
+                          if (kDebugMode) {
+                            print(e);
+                          }
                         }
-                        Get.offAll(HomePage());
-                      } catch (e) {
-                        if (kDebugMode) {
-                          print(e);
+                      },
+                      child: LogoButton(
+                        btnText: 'Google',
+                        btnImagePath: 'googleLogo.svg',
+                        btnColor: AppColor.grey,
+                        btnTextColor: AppColor.white,
+                      ),
+                    ),
+                    LogoButton(
+                      btnText: 'Microsoft',
+                      btnImagePath: 'microsoft-icon.svg',
+                      btnColor: AppColor.white,
+                      btnTextColor: AppColor.grey,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                NameTextField(
+                  hintText: 'Email',
+                  imagePath: 'sms.png',
+                  validator: (value) =>
+                      value!.isEmail ? null : 'Enter a valid email',
+                  controller: emailController,
+                  inputType: TextInputType.emailAddress,
+                ),
+                PasswordTextField(
+                  passwordController: passwordController,
+                  validator: (value) => value!.length > 5
+                      ? null
+                      : 'Enter a password of min 6 character',
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                CustomButton(
+                    btnText: 'Login',
+                    callback: () async {
+                      if (_formKey.currentState!.validate()) {
+                        try {
+                          dynamic result = await _auth.signInUsingMail(
+                              emailController.text, passwordController.text);
+                          if (kDebugMode) {
+                            print(result);
+                          }
+                          if (result != null) {
+                            Get.offAll(() => HomePage());
+                          }
+                        } catch (e) {
+                          if (kDebugMode) {
+                            print(e);
+                          }
                         }
                       }
-                    },
-                    child: LogoButton(
-                      btnText: 'Google',
-                      btnImagePath: 'googleLogo.svg',
-                      btnColor: AppColor.grey,
-                      btnTextColor: AppColor.white,
-                    ),
-                  ),
-                  LogoButton(
-                    btnText: 'Microsoft',
-                    btnImagePath: 'microsoft-icon.svg',
-                    btnColor: AppColor.white,
-                    btnTextColor: AppColor.grey,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 25,
-              ),
-              NameTextField(
-                hintText: 'Email',
-                imagePath: 'sms.png',
-                controller: emailController,
-              ),
-              PasswordTextField(
-                passwordController: passwordController,
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              CustomButton(
-                  btnText: 'Login',
-                  callback: () async {
-                    dynamic result = await _auth.signInUsingMail(
-                        emailController.text, passwordController.text);
-                    if (result == null) {
-                      setState(() {
-                        error = 'Could not Sign In with the Credentials';
-                        if (kDebugMode) {
-                          print(error);
-                        }
-                      });
-                    } else {
-                      Get.offAll(() => HomePage());
-                    }
-                  }),
-              SizedBox(
-                height: 45,
-              ),
-              RichText(
+                    }),
+                SizedBox(
+                  height: 45,
+                ),
+                RichText(
                   text: TextSpan(
-                      text: 'Don\'t have an account yet? ',
-                      style: smallTextStyle,
-                      children: [
-                    TextSpan(
+                    text: 'Don\'t have an account yet? ',
+                    style: smallTextStyle,
+                    children: [
+                      TextSpan(
                         text: 'Register',
                         style: TextStyle(
                           fontSize: 14,
@@ -151,9 +162,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Get.off(SignUp());
-                          })
-                  ]))
-            ],
+                          },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

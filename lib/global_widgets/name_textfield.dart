@@ -7,13 +7,15 @@ class NameTextField extends StatelessWidget {
   final String imagePath;
   final TextEditingController controller;
   final TextInputType? inputType;
-  const NameTextField(
-      {Key? key,
-      required this.hintText,
-      this.inputType,
-      required this.imagePath,
-      required this.controller})
-      : super(key: key);
+  final FormFieldValidator<String> validator;
+  const NameTextField({
+    Key? key,
+    required this.hintText,
+    this.inputType,
+    required this.imagePath,
+    required this.controller,
+    required this.validator,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class NameTextField extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.symmetric(horizontal: 33, vertical: 10),
       child: TextFormField(
+        validator: validator,
         controller: controller,
         keyboardType: inputType ?? TextInputType.name,
         style: smallTextStyle,

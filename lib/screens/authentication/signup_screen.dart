@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,9 +22,9 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final _formKey = GlobalKey<FormState>();
   final AuthServices _auth = AuthServices();
-  String error = '';
+  final _formKey = GlobalKey<FormState>();
+
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -34,6 +35,7 @@ class _SignUpState extends State<SignUp> {
       backgroundColor: AppColor.white,
       body: SafeArea(
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Form(
             key: _formKey,
             child: Column(
@@ -65,7 +67,7 @@ class _SignUpState extends State<SignUp> {
                       onTap: () async {
                         showDialog(
                             context: context,
-                            barrierDismissible: false,
+                            barrierDismissible: true,
                             builder: (context) {
                               return AlertDialog(
                                 content: Column(
@@ -78,14 +80,13 @@ class _SignUpState extends State<SignUp> {
                             });
                         try {
                           UserModel result = await _auth.signInUsingGoogle();
-                          if (result == null) {
-                            setState(() {
-                              error = 'Could not Sign In with Google';
-                            });
-                          } else {
-                            Get.offAll(HomePage());
+                          if (kDebugMode) {
+                            print(result);
                           }
-                        } catch (e) {}
+                          Get.offAll(HomePage());
+                        } catch (e) {
+                          Get.snackbar('Error Signing Up', e.toString());
+                        }
                       },
                       child: LogoButton(
                         btnText: 'Google',
@@ -108,16 +109,24 @@ class _SignUpState extends State<SignUp> {
                 NameTextField(
                   hintText: 'Username',
                   imagePath: 'profile.png',
+                  validator: (value) => value!.length > 2
+                      ? null
+                      : 'Username should be of min 3 character',
                   controller: userNameController,
                 ),
                 NameTextField(
                   hintText: 'Email',
                   imagePath: 'sms.png',
+                  validator: (value) =>
+                      value!.isEmail ? null : 'Enter a valid email',
                   inputType: TextInputType.emailAddress,
                   controller: emailController,
                 ),
                 PasswordTextField(
                   passwordController: passwordController,
+                  validator: (value) => value!.length > 5
+                      ? null
+                      : 'Enter a password of min 6 character',
                 ),
                 SizedBox(
                   height: 50,
@@ -125,18 +134,21 @@ class _SignUpState extends State<SignUp> {
                 CustomButton(
                   btnText: 'Register',
                   callback: () async {
-                    if (_formKey.currentState!.validate()) {
-                      setState(() {});
-                      dynamic result = await _auth.signUpUsingEmail(
-                          emailController.text, passwordController.text,
-                          username: userNameController.text);
-
-                      if (result == null) {
-                        setState(() {
-                          error = 'Sign up failed using email';
-                        });
-                      } else {
-                        Get.offAll(HomePage());
+                    try {
+                      if (_formKey.currentState!.validate()) {
+                        dynamic result = await _auth.signUpUsingEmail(
+                            emailController.text, passwordController.text,
+                            username: userNameController.text);
+                        if (kDebugMode) {
+                          print(result);
+                        }
+                        if (result != null) {
+                          Get.offAll(HomePage());
+                        }
+                      }
+                    } catch (e) {
+                      if (kDebugMode) {
+                        print(e);
                       }
                     }
                   },

@@ -17,8 +17,6 @@ class DashBoard extends StatefulWidget {
 }
 
 class _DashBoardState extends State<DashBoard> {
-  String username = 'User';
-
   @override
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
@@ -31,6 +29,7 @@ class _DashBoardState extends State<DashBoard> {
           child: SizedBox(
             width: _width,
             child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               child: Consumer<UserModel>(
                 builder: (context, student, child) {
                   return StreamBuilder<StudentData>(

@@ -3,8 +3,11 @@ import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/text_styles.dart';
 
 class PasswordTextField extends StatefulWidget {
-  const PasswordTextField({Key? key, required this.passwordController})
+  const PasswordTextField(
+      {Key? key, required this.passwordController, required this.validator})
       : super(key: key);
+  final FormFieldValidator<String> validator;
+
   final TextEditingController passwordController;
   @override
   _PasswordTextFieldState createState() => _PasswordTextFieldState();
@@ -25,8 +28,9 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(15)),
       clipBehavior: Clip.antiAlias,
       margin: EdgeInsets.symmetric(horizontal: 33, vertical: 10),
-      child: TextField(
+      child: TextFormField(
         keyboardType: TextInputType.text,
+        validator: widget.validator,
         style: smallTextStyle,
         controller: widget.passwordController,
         obscureText: isObscure,
