@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:ilearn/dashboard_components/button_row_one.dart';
 import 'package:ilearn/dashboard_components/button_row_two.dart';
 import 'package:ilearn/dashboard_components/learn_credit_container.dart';
@@ -39,29 +40,40 @@ class _DashBoardState extends State<DashBoard> {
                       if (snapshot.hasData) {
                         final studentData = snapshot.data;
 
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Dashboard',
-                              style: headingStyle,
+                        return AnimationLimiter(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: AnimationConfiguration.toStaggeredList(
+                              duration: const Duration(milliseconds: 275),
+                              childAnimationBuilder: (widget) =>
+                                  FadeInAnimation(
+                                child: ScaleAnimation(
+                                  child: widget,
+                                ),
+                              ),
+                              children: [
+                                Text(
+                                  'Dashboard',
+                                  style: headingStyle,
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  'Welcome ${studentData!.username},',
+                                  style: smallTextStyle,
+                                ),
+                                LearnCreditContainer(
+                                  credits: studentData.credits,
+                                ),
+                                ButtonRowOne(),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                ButtonRowTwo()
+                              ],
                             ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              'Welcome ${studentData!.username},',
-                              style: smallTextStyle,
-                            ),
-                            LearnCreditContainer(
-                              credits: studentData.credits,
-                            ),
-                            ButtonRowOne(),
-                            SizedBox(
-                              height: 15,
-                            ),
-                            ButtonRowTwo()
-                          ],
+                          ),
                         );
                       } else {
                         return Center(child: CircularProgressIndicator());

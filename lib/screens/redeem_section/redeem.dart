@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:ilearn/models/gift_tile_model.dart';
 import 'package:ilearn/models/student.dart';
 import 'package:ilearn/models/user.dart';
@@ -60,19 +61,30 @@ class Redeem extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                ListView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: GiftTileModel.redeemGifts.length,
-                    itemBuilder: (BuildContext context, index) {
-                      GiftTileModel giftData = GiftTileModel.redeemGifts[index];
-                      return GiftTile(
-                        imageNumber: giftData.imageNumber.toString(),
-                        itemName: giftData.giftName.toString(),
-                        itemCredit: giftData.price.toString(),
-                        tileColor: giftData.giftContainerColor,
-                      );
-                    }),
+                AnimationLimiter(
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: GiftTileModel.redeemGifts.length,
+                      itemBuilder: (BuildContext context, index) {
+                        GiftTileModel giftData =
+                            GiftTileModel.redeemGifts[index];
+                        return AnimationConfiguration.staggeredList(
+                          position: index,
+                          duration: const Duration(milliseconds: 375),
+                          child: ScaleAnimation(
+                            child: FadeInAnimation(
+                              child: GiftTile(
+                                imageNumber: giftData.imageNumber.toString(),
+                                itemName: giftData.giftName.toString(),
+                                itemCredit: giftData.price.toString(),
+                                tileColor: giftData.giftContainerColor,
+                              ),
+                            ),
+                          ),
+                        );
+                      }),
+                ),
               ],
             ),
           ),

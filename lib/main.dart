@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       value: AuthServices().user,
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
+        defaultTransition: Transition.cupertino,
         theme: ThemeData(
           primarySwatch: Colors.orange,
           fontFamily: 'SourceSansPro',
