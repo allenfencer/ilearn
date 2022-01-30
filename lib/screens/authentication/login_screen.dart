@@ -24,7 +24,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final AuthServices _auth = AuthServices();
-  String error = '';
+  String error = 'no error';
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -77,14 +77,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                       try {
                         UserModel result = await _auth.signInUsingGoogle();
-                        if (result == null) {
-                          setState(() {
-                            error = 'Could not Sign In with Google';
-                          });
-                        } else {
-                          Get.offAll(HomePage());
+                        if (kDebugMode) {
+                          print(result);
                         }
-                      } catch (e) {}
+                        Get.offAll(HomePage());
+                      } catch (e) {
+                        if (kDebugMode) {
+                          print(e);
+                        }
+                      }
                     },
                     child: LogoButton(
                       btnText: 'Google',
@@ -116,10 +117,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 50,
               ),
               CustomButton(
-                btnText: 'Login',
-                callback: () async {
-                  if (_formKey.currentState!.validate()) {
-                    setState(() {});
+                  btnText: 'Login',
+                  callback: () async {
                     dynamic result = await _auth.signInUsingMail(
                         emailController.text, passwordController.text);
                     if (result == null) {
@@ -132,9 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     } else {
                       Get.offAll(() => HomePage());
                     }
-                  }
-                },
-              ),
+                  }),
               SizedBox(
                 height: 45,
               ),
