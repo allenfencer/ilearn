@@ -16,8 +16,7 @@ class LearnCreditContainer extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 20),
       alignment: Alignment.center,
       decoration: BoxDecoration(
-          color: AppColor.primaryColor,
-          borderRadius: BorderRadius.circular(20)),
+          color: AppColor.black, borderRadius: BorderRadius.circular(20)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

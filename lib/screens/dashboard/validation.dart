@@ -128,7 +128,7 @@ class _ValidationState extends State<Validation> {
                   image2 != null
                       ? Container(
                           margin: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 10),
+                              vertical: 15, horizontal: 10),
                           clipBehavior: Clip.antiAlias,
                           // alignment: Alignment.topCenter,
                           height: 230,
@@ -151,7 +151,7 @@ class _ValidationState extends State<Validation> {
                           child: Container(
                             height: 230,
                             margin: EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 10),
+                                vertical: 15, horizontal: 10),
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               color: Color(0xffE2F3FA),
@@ -196,7 +196,7 @@ class _ValidationState extends State<Validation> {
                   image1 != null
                       ? Container(
                           margin: EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 10),
+                              vertical: 15, horizontal: 10),
                           clipBehavior: Clip.antiAlias,
                           // alignment: Alignment.topCenter,
                           height: 230,
@@ -218,7 +218,7 @@ class _ValidationState extends State<Validation> {
                           child: Container(
                             height: 230,
                             margin: EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 10),
+                                vertical: 15, horizontal: 10),
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
                               color: Color(0xffFFE7C3),
@@ -263,16 +263,25 @@ class _ValidationState extends State<Validation> {
                     height: 20,
                   ),
                   Center(
-                    child: Container(
-                      height: 50,
-                      width: 200,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Color(0xffDDEAC4)),
-                      alignment: Alignment.center,
-                      child: Text(
-                        'UPLOAD TO CLOUD',
-                        style: colouredBoldTextStyle(Color(0xff00BB34), 16),
+                    child: GestureDetector(
+                      onTap: () {
+                        Future.delayed(Duration(milliseconds: 1500))
+                            .then((value) => setState(() {
+                                  image1 = null;
+                                  image2 = null;
+                                }));
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 200,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Color(0xffDDEAC4)),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'UPLOAD TO CLOUD',
+                          style: colouredBoldTextStyle(Color(0xff00BB34), 16),
+                        ),
                       ),
                     ),
                   ),

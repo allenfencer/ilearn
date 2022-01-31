@@ -44,7 +44,7 @@ class GiftTileModel {
         imageNumber: '6'),
     GiftTileModel(
         giftContainerColor: Color(0xff808AFF),
-        giftName: '128GB Pendrive',
+        giftName: '128GB Crucial SSD',
         price: 3000,
         imageNumber: '7'),
     GiftTileModel(

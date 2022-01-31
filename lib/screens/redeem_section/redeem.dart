@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ilearn/models/gift_tile_model.dart';
 import 'package:ilearn/models/student.dart';
 import 'package:ilearn/models/user.dart';
@@ -29,9 +30,20 @@ class Redeem extends StatelessWidget {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     final studentData = snapshot.data;
-                    return Text(
-                      'Available Credits: ${studentData!.credits} LC',
-                      style: colouredBoldTextStyle(AppColor.secondaryColor, 18),
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Available Credits: ${studentData!.credits} ',
+                          style: colouredBoldTextStyle(
+                              AppColor.secondaryColor, 18),
+                        ),
+                        SvgPicture.asset(
+                          'assets/svgs/logo/lc.svg',
+                          height: 22,
+                          width: 22,
+                        )
+                      ],
                     );
                   } else {
                     return Center(child: CircularProgressIndicator());
@@ -44,7 +56,10 @@ class Redeem extends StatelessWidget {
           padding: const EdgeInsets.only(left: 15.0),
           child: CircleAvatar(
             backgroundColor: Colors.grey[100],
-            child: Icon(Icons.person),
+            child: Icon(
+              Icons.person,
+              color: AppColor.grey,
+            ),
           ),
         ),
       ),

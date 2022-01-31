@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/text_styles.dart';
 
@@ -50,15 +51,26 @@ class GiftTile extends StatelessWidget {
                       onPressed: () {},
                       style: TextButton.styleFrom(
                           alignment: Alignment.center,
+                          fixedSize: Size(120, 50),
                           padding: EdgeInsets.all(10),
                           backgroundColor: Color(0xfff5f5f5),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15))),
-                      child: Text(
-                        '$itemCredit LC',
-                        style: boldTextStyle(
-                          AppColor.secondaryColor,
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '$itemCredit ',
+                            style: boldTextStyle(
+                              AppColor.secondaryColor,
+                            ),
+                          ),
+                          SvgPicture.asset(
+                            'assets/svgs/logo/lc.svg',
+                            height: 22,
+                            width: 22,
+                          )
+                        ],
                       ))
                 ],
               ),
