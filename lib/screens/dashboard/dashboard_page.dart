@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:ilearn/dashboard_components/button_row_one.dart';
 import 'package:ilearn/dashboard_components/button_row_two.dart';
+import 'package:ilearn/dashboard_components/challenge_containers.dart';
 import 'package:ilearn/dashboard_components/learn_credit_container.dart';
 import 'package:ilearn/models/student.dart';
 import 'package:ilearn/models/user.dart';
@@ -65,12 +66,22 @@ class _DashBoardState extends State<DashBoard> {
                                 ),
                                 LearnCreditContainer(
                                   credits: studentData.credits,
+                                  streak: studentData.streak,
                                 ),
                                 ButtonRowOne(),
                                 SizedBox(
                                   height: 15,
                                 ),
-                                ButtonRowTwo()
+                                ButtonRowTwo(),
+                                SizedBox(
+                                  height: 25,
+                                ),
+                                Text(
+                                  'Challenge',
+                                  style:
+                                      colouredBoldTextStyle(AppColor.black, 24),
+                                ),
+                                ChallengeContainers()
                               ],
                             ),
                           ),

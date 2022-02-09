@@ -41,6 +41,14 @@ TextStyle colouredBoldTextStyle(Color color, double? size) {
   );
 }
 
+TextStyle colouredNormalTextStyle(Color? color, double? size) {
+  return TextStyle(
+    color: color,
+    fontSize: size ?? 20,
+    fontWeight: FontWeight.w500,
+  );
+}
+
 const TextStyle mediumTextStyle =
     TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: AppColor.white);
 
