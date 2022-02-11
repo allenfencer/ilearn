@@ -37,12 +37,13 @@ dependencies:
     sdk: flutter
   flutter_launcher_icons: ^0.9.0
   flutter_native_splash: ^1.1.0
+  flutter_staggered_animations: ^1.0.0
   flutter_svg: ^1.0.0
+  font_awesome_flutter: ^9.2.0
   get: ^4.5.1
   google_sign_in: ^5.2.1
   image_picker: ^0.8.4+5
   provider: ^6.0.2
-  flutter_staggered_animations: ^1.0.0
 
 flutter_native_splash:
   background_image: "assets/splashscreen.png"
