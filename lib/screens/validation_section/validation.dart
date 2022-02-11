@@ -1,12 +1,13 @@
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:ilearn/screens/validation_section/certificate_validation.dart';
+import 'package:ilearn/screens/validation_section/daily_validation.dart';
 import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/text_styles.dart';
 
 class Validation extends StatelessWidget {
   const Validation({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -18,32 +19,28 @@ class Validation extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: AppColor.white,
             elevation: 0,
-            title: Text(
-              'Validation',
-              style: colouredBoldTextStyle(AppColor.primaryColor, 22),
-            ),
+            toolbarHeight: 0,
             bottom: TabBar(
+              automaticIndicatorColorAdjustment: true,
               indicatorWeight: 3,
-              indicatorColor: Color(0xff03DAC6),
+              unselectedLabelColor: AppColor.grey,
+              labelColor: AppColor.primaryColor,
+              indicatorColor: AppColor.secondaryColor,
               tabs: [
                 Tab(
-                  icon: Icon(
-                    FontAwesomeIcons.book,
-                  ),
-                  text: 'Daily Validation',
+                  icon: FaIcon(FontAwesomeIcons.listAlt),
+                  text: 'Daily Task',
                 ),
                 Tab(
-                  icon: Icon(
-                    FontAwesomeIcons.check,
-                  ),
-                  text: 'Certificate Validation',
+                  icon: FaIcon(FontAwesomeIcons.fileUpload),
+                  text: 'Certificate Upload',
                 ),
               ],
             ),
           ),
           body: TabBarView(
             children: [
-              CertificateValidation(),
+              DailyValidation(),
               CertificateValidation(),
             ],
           )),

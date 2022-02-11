@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ilearn/screens/dashboard/dashboard_page.dart';
 import 'package:ilearn/screens/dashboard/profile.dart';
 import 'package:ilearn/screens/redeem_section/redeem.dart';
-import 'package:ilearn/screens/dashboard/validation.dart';
+import 'package:ilearn/screens/validation_section/validation.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
