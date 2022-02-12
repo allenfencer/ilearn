@@ -72,26 +72,28 @@ class _CertificateValidationState extends State<CertificateValidation> {
                 ),
               ),
               children: [
-                SizedBox(
-                  height: 30,
-                ),
-                Padding(
+                // SizedBox(
+                //   height: 30,
+                // ),
+                Container(
+                  alignment: Alignment.center,
+                  color: Colors.grey[200],
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                   child: Text(
-                    validationMsg,
+                    validationMsg1,
                     style: colouredBoldTextStyle(Color(0xff6A6A6A), 15),
                   ),
                 ),
                 Container(
                   decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                      BoxDecoration(borderRadius: BorderRadius.circular(10)),
                   clipBehavior: Clip.antiAlias,
                   margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                   child: TextFormField(
                     controller: urlController,
                     keyboardType: TextInputType.text,
-                    style: smallTextStyle,
+                    style: colouredNormalTextStyle(AppColor.primaryColor, 15),
                     decoration: InputDecoration(
                       suffixIcon: GestureDetector(
                         onTap: () {
@@ -100,23 +102,23 @@ class _CertificateValidationState extends State<CertificateValidation> {
                         child: Icon(
                           Icons.send_sharp,
                           size: 20,
-                          color: Color(0xff787878),
+                          color: AppColor.primaryColor,
                         ),
                       ),
                       contentPadding:
                           EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-                      fillColor: Color(0xffF2F2F2),
+                      fillColor: Color(0xffEAEAEA),
                       filled: true,
                       border: InputBorder.none,
-                      hintStyle: smallTextStyle,
-                      hintText: 'Enter certificate url for validation',
+                      hintStyle: colouredBoldTextStyle(AppColor.grey, 15),
+                      hintText: 'Enter Certificate url for validation',
                     ),
                   ),
                 ),
                 image2 != null
                     ? Container(
                         margin:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                         clipBehavior: Clip.antiAlias,
                         // alignment: Alignment.topCenter,
                         height: 230,
@@ -139,7 +141,7 @@ class _CertificateValidationState extends State<CertificateValidation> {
                         child: Container(
                           height: 230,
                           margin: EdgeInsets.symmetric(
-                              vertical: 15, horizontal: 10),
+                              vertical: 20, horizontal: 15),
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             color: Color(0xffE2F3FA),
@@ -184,7 +186,7 @@ class _CertificateValidationState extends State<CertificateValidation> {
                 image1 != null
                     ? Container(
                         margin:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                         clipBehavior: Clip.antiAlias,
                         // alignment: Alignment.topCenter,
                         height: 230,
@@ -206,7 +208,7 @@ class _CertificateValidationState extends State<CertificateValidation> {
                         child: Container(
                           height: 230,
                           margin: EdgeInsets.symmetric(
-                              vertical: 15, horizontal: 10),
+                              vertical: 15, horizontal: 15),
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
                             color: Color(0xffFFE7C3),
@@ -263,7 +265,7 @@ class _CertificateValidationState extends State<CertificateValidation> {
                       height: 50,
                       width: 200,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(10),
                           color: Color(0xffDDEAC4)),
                       alignment: Alignment.center,
                       child: Text(
