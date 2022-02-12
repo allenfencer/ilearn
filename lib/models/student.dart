@@ -9,7 +9,6 @@ class StudentData {
   final int streak;
 
   final int credits;
-  // final List<String> certificates;
 
   StudentData({
     required this.uid,
@@ -20,7 +19,6 @@ class StudentData {
     required this.about,
     required this.streak,
     required this.credits,
-    // required this.certificates,
   });
 }
 
@@ -35,7 +33,7 @@ class StudentDataModel {
   final int streak;
 
   final int credits;
-  // final List<String> certificates;
+  final List<String> certificates;
 
   StudentDataModel({
     required this.uid,
@@ -46,6 +44,6 @@ class StudentDataModel {
     required this.about,
     required this.streak,
     required this.credits,
-    // required this.certificates,
+    required this.certificates,
   });
 }
