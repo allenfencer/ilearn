@@ -30,7 +30,6 @@ class StudentDatabaseService {
         about: about ?? 'iLearn User | Tech Enthusiast',
         streak: streak ?? 1,
         credits: 10,
-        // certificates: certificates ?? [],
       );
     }
   }
@@ -54,7 +53,6 @@ class StudentDatabaseService {
       'about': about ?? 'iLearn User | Tech Enthusiast',
       'streak': streak ?? 1,
       'credits': 10,
-      // 'certificates': certificates,
     });
   }
 
@@ -78,7 +76,7 @@ class StudentDatabaseService {
   Future updateCertificateData(
       {required String certificateUrl, required String course}) async {
     await student.doc(uid).update({
-      'credits': FieldValue.increment(100),
+      'credits': FieldValue.increment(15),
     });
     await student.doc(uid).collection('certificate').doc(course).set({
       'certificate_url': certificateUrl,
@@ -101,6 +99,10 @@ class StudentDatabaseService {
 // Push Streak Data
   Future updateStreakData(
       {required String postUrl, required String desc}) async {
+    await student.doc(uid).update({
+      'credits': FieldValue.increment(1),
+      'streak': FieldValue.increment(1),
+    });
     await student.doc(uid).collection('streak').doc().set({
       'post_url': postUrl,
       'description': desc,
