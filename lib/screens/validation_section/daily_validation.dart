@@ -1,9 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ilearn/models/user.dart';
+import 'package:ilearn/services/database.dart';
 import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/strings.dart';
 import 'package:ilearn/styling/text_styles.dart';
+import 'package:provider/provider.dart';
 
 class DailyValidation extends StatelessWidget {
   const DailyValidation({Key? key}) : super(key: key);
@@ -11,6 +15,8 @@ class DailyValidation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController socialMediaUrl = TextEditingController();
+    TextEditingController descController = TextEditingController();
+    descController.text = '';
     return Scaffold(
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
@@ -47,6 +53,7 @@ class DailyValidation extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 16, color: AppColor.primaryColor),
                       keyboardType: TextInputType.text,
+                      controller: descController,
                       cursorHeight: 25,
                       minLines: 7,
                       maxLines: 12,
@@ -70,16 +77,30 @@ class DailyValidation extends StatelessWidget {
                   keyboardType: TextInputType.text,
                   style: colouredNormalTextStyle(AppColor.primaryColor, 15),
                   decoration: InputDecoration(
-                    suffixIcon: GestureDetector(
-                      onTap: () {
-                        socialMediaUrl.clear();
-                      },
-                      child: Icon(
-                        Icons.send_sharp,
-                        size: 20,
-                        color: AppColor.primaryColor,
-                      ),
-                    ),
+                    suffixIcon:
+                        Consumer<UserModel>(builder: (context, student, child) {
+                      return GestureDetector(
+                        onTap: () async {
+                          if (socialMediaUrl.text.isNotEmpty) {
+                            StudentDatabaseService(uid: student.uid)
+                                .updateStreakData(
+                                    postUrl: socialMediaUrl.text,
+                                    desc: descController.text);
+                            Get.snackbar('Streak  Updated',
+                                'Another successful day champ!');
+                            socialMediaUrl.clear();
+                            descController.clear();
+                          } else {
+                            Get.snackbar('Error', 'Ivalid Url');
+                          }
+                        },
+                        child: Icon(
+                          Icons.send_sharp,
+                          size: 20,
+                          color: AppColor.primaryColor,
+                        ),
+                      );
+                    }),
                     contentPadding:
                         EdgeInsets.symmetric(horizontal: 12, vertical: 18),
                     fillColor: Color(0xffEAEAEA),

@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
+import 'package:ilearn/models/user.dart';
+import 'package:ilearn/services/database.dart';
 import 'package:ilearn/styling/colors.dart';
 import 'package:ilearn/styling/strings.dart';
 import 'package:ilearn/styling/text_styles.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class CertificateValidation extends StatefulWidget {
   const CertificateValidation({Key? key}) : super(key: key);
@@ -18,6 +21,8 @@ class CertificateValidation extends StatefulWidget {
 
 class _CertificateValidationState extends State<CertificateValidation> {
   TextEditingController urlController = TextEditingController();
+  TextEditingController courseController = TextEditingController();
+
   File? image1;
   File? image2;
 
@@ -89,6 +94,37 @@ class _CertificateValidationState extends State<CertificateValidation> {
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(10)),
                   clipBehavior: Clip.antiAlias,
+                  margin: EdgeInsets.fromLTRB(15, 20, 15, 0),
+                  child: TextFormField(
+                    controller: courseController,
+                    keyboardType: TextInputType.text,
+                    style: colouredNormalTextStyle(AppColor.primaryColor, 15),
+                    decoration: InputDecoration(
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          courseController.clear();
+                        },
+                        child: Icon(
+                          Icons.book_rounded,
+                          size: 20,
+                          color: AppColor.primaryColor,
+                        ),
+                      ),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+                      fillColor: Color(0xffEAEAEA),
+                      filled: true,
+                      border: InputBorder.none,
+                      hintStyle: colouredBoldTextStyle(AppColor.grey, 15),
+                      hintText: 'Enter Course Name',
+                    ),
+                  ),
+                ),
+
+                Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                  clipBehavior: Clip.antiAlias,
                   margin: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                   child: TextFormField(
                     controller: urlController,
@@ -100,7 +136,7 @@ class _CertificateValidationState extends State<CertificateValidation> {
                           urlController.clear();
                         },
                         child: Icon(
-                          Icons.send_sharp,
+                          Icons.add_link_rounded,
                           size: 20,
                           color: AppColor.primaryColor,
                         ),
@@ -117,8 +153,7 @@ class _CertificateValidationState extends State<CertificateValidation> {
                 ),
                 image2 != null
                     ? Container(
-                        margin:
-                            EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                        margin: EdgeInsets.fromLTRB(15, 12, 15, 0),
                         clipBehavior: Clip.antiAlias,
                         // alignment: Alignment.topCenter,
                         height: 230,
@@ -252,29 +287,46 @@ class _CertificateValidationState extends State<CertificateValidation> {
                 SizedBox(
                   height: 20,
                 ),
-                Center(
-                  child: GestureDetector(
-                    onTap: () {
-                      Future.delayed(Duration(milliseconds: 1500))
-                          .then((value) => setState(() {
-                                image1 = null;
-                                image2 = null;
-                              }));
-                    },
-                    child: Container(
-                      height: 50,
-                      width: 200,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color(0xffDDEAC4)),
-                      alignment: Alignment.center,
-                      child: Text(
-                        'UPLOAD TO CLOUD',
-                        style: colouredBoldTextStyle(Color(0xff00BB34), 16),
+                Consumer<UserModel>(builder: (context, student, child) {
+                  return Center(
+                    child: GestureDetector(
+                      onTap: () async {
+                        if (courseController.text.isNotEmpty &&
+                            (urlController.text.isNotEmpty ||
+                                image1 != null ||
+                                image2 != null)) {
+                          StudentDatabaseService(uid: student.uid)
+                              .updateCertificateData(
+                                  certificateUrl: urlController.text,
+                                  course: courseController.text);
+                          Get.snackbar('Cretificate Uploaded',
+                              '${courseController.text} certificate has been added');
+                          setState(() {
+                            image1 = null;
+                            image2 = null;
+                            urlController.clear();
+                            courseController.clear();
+                          });
+                        } else {
+                          Get.snackbar(
+                              'Error', 'Complete all fields with valid data');
+                        }
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 200,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Color(0xffDDEAC4)),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'UPLOAD TO CLOUD',
+                          style: colouredBoldTextStyle(Color(0xff00BB34), 16),
+                        ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                }),
                 SizedBox(
                   height: 100,
                 )
