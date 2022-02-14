@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ilearn/models/certrificate.dart';
+import 'package:ilearn/models/certificate.dart';
 import 'package:ilearn/models/student.dart';
 
 class StudentDatabaseService {
