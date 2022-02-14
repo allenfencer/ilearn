@@ -3,6 +3,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:ilearn/models/user.dart';
 import 'package:ilearn/screens/authentication/login_screen.dart';
+import 'package:ilearn/screens/dashboard/certificates.dart';
 import 'package:ilearn/services/auth.dart';
 import 'package:ilearn/services/database.dart';
 import 'package:ilearn/styling/text_styles.dart';
@@ -158,6 +159,22 @@ class _ProfileState extends State<Profile> {
                                   trailing: Icon(
                                     Icons.arrow_forward_ios_outlined,
                                     size: 15,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              InkWell(
+                                onTap: () => Get.to(CertificateScreen()),
+                                child: const Card(
+                                  child: ListTile(
+                                    leading: Icon(Icons.emoji_events_rounded),
+                                    title: Text('Certificates'),
+                                    trailing: Icon(
+                                      Icons.arrow_forward_ios_outlined,
+                                      size: 15,
+                                    ),
                                   ),
                                 ),
                               ),

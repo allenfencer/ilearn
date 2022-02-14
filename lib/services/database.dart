@@ -92,7 +92,7 @@ class StudentDatabaseService {
       return CertificateModel(
           certificateUrl: doc.data()!['certificate_url'],
           course: doc.data()!['course'],
-          dateTime: doc.data()!['date_time']);
+          dateTime: doc.data()!['date_time']?.toDate());
     }).toList();
   }
 
@@ -118,7 +118,7 @@ class StudentDatabaseService {
     return student
         .doc(uid)
         .collection('certificate')
-        .orderBy('timestamp', descending: true)
+        .orderBy('date_time', descending: true)
         .snapshots()
         .map(certificateList);
   }
