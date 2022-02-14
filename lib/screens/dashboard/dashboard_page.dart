@@ -8,6 +8,7 @@ import 'package:ilearn/models/student.dart';
 import 'package:ilearn/models/user.dart';
 import 'package:ilearn/services/database.dart';
 import 'package:ilearn/styling/colors.dart';
+import 'package:ilearn/styling/strings.dart';
 import 'package:ilearn/styling/text_styles.dart';
 import 'package:provider/provider.dart';
 
@@ -77,11 +78,41 @@ class _DashBoardState extends State<DashBoard> {
                                   height: 25,
                                 ),
                                 Text(
-                                  'Challenge',
+                                  'Challenges',
                                   style:
                                       colouredBoldTextStyle(AppColor.black, 24),
                                 ),
-                                ChallengeContainers()
+                                ChallengeContainers(),
+                                //QUOTE FOR THE DAY CONTAINER
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  clipBehavior: Clip.antiAlias,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 20),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color(0xffFCF1D6)),
+                                  margin: EdgeInsets.symmetric(vertical: 25),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'QUOTE FOR THE DAY',
+                                        style: colouredBoldTextStyle(
+                                            AppColor.primaryColor, 20),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        quotes[2],
+                                        style: colouredNormalTextStyle(
+                                            AppColor.black, 14),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ),

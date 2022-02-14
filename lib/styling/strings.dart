@@ -19,11 +19,15 @@ List quotes = [
 
   '“Lack of direction, not lack of time, is the problem. We all have twenty-four hour days.”\n\n― Zig Ziglar',
 
-  '“You never change your life until you step out of your comfort zone; change begins at the end of your comfort zone.”\n\n― Roy T. Bennett'
-      '“The only way of discovering the limits of the possible is to venture a little way past them into the impossible.”\n\n― Arthur C. Clarke'
-      '“The man who moves a mountain begins by carrying away small stones.”\n\n― Confucius, Confucius: The Analects'
-      '“Do what you love, love what you do, and with all your heart give yourself to it.”\n\n― Roy T. Bennett, The Light in the Heart'
-      '“Without ambition one starts nothing. Without work one finishes nothing. The prize will not be sent to you. You have to win it.”\n\n― Ralph Waldo Emerson'
+  '“You never change your life until you step out of your comfort zone; change begins at the end of your comfort zone.”\n\n― Roy T. Bennett',
+
+  '“The only way of discovering the limits of the possible is to venture a little way past them into the impossible.”\n\n― Arthur C. Clarke',
+
+  '“The man who moves a mountain begins by carrying away small stones.”\n\n― Confucius, Confucius: The Analects',
+
+  '“Do what you love, love what you do, and with all your heart give yourself to it.”\n\n― Roy T. Bennett, The Light in the Heart',
+
+  '“Without ambition one starts nothing. Without work one finishes nothing. The prize will not be sent to you. You have to win it.”\n\n― Ralph Waldo Emerson',
 
 // “I must not fear. Fear is the mind-killer. Fear is the little-death that brings total obliteration. I will face my fear. I will permit it to pass over me and through me. And when it has gone past I will turn the inner eye to see its path. Where the fear has gone there will be nothing. Only I will remain.”
 // ― Frank Herbert, Dune
